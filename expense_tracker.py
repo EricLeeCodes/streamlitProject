@@ -59,8 +59,10 @@ st.markdown("""
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
 
-    st.markdown("<h4 style='padding-block: 25px;'>Your Uploaded CSV Content:</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='padding-block: 25px; color: #4CAF50;'>Your Uploaded CSV Content:</h4>", unsafe_allow_html=True)
     st.write(df) # Displays CSV file
+    total_amount = df['Amount'].sum()
+    st.markdown(f"<div>Total Amount Spent: ${total_amount:,.2f}</div>", unsafe_allow_html=True)
 
 
     # Fill in missing values with 0
@@ -69,9 +71,11 @@ if uploaded_file is not None:
         st.warning("Some missing values were found and filled with 0")
         df.fillna(0, inplace=True)
 
+
+# Example file
 example_file = StringIO(csv_content)
 
-st.markdown("<h4 style=' padding-top: 50px;'>Example CSV Content:</h4>", unsafe_allow_html=True)
+st.markdown("<h4 style=' padding-top: 50px; color: #4CAF50;'>Example CSV Content:</h4>", unsafe_allow_html=True)
 st.markdown("""
     <style>
         .e12yskxj0 {
@@ -104,8 +108,13 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
+
 example_df=pd.read_csv(example_file)
 st.write(example_df)
+example_total_amount = example_df['Amount'].sum()
+st.markdown(f"<div>Total Amount Spent: ${example_total_amount:,.2f}</div>", unsafe_allow_html=True)
+
+
 
 st.markdown("<h5 style='text-align:center; padding-top: 50px;'>You can donwload this CSV file here to upload yourself!:</h5>", unsafe_allow_html=True)
 st.download_button(
