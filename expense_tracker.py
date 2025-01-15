@@ -21,7 +21,7 @@ st.markdown("<h4 style='text-align: center; color: white ;'>Hello! Upload your e
 # File uploader
 uploaded_file = st.file_uploader("Choose your CSV file", type="csv", label_visibility="collapsed")
 
-# Styling for file uploader
+# Stylingl for fie uploader and general colors
 st.markdown("""
     <style>
         .es2srfl0 {
@@ -32,7 +32,22 @@ st.markdown("""
             border: 2px solid #4CAF50;
             border-radius: 15px;
             margin-block: 25px;
+            background-color: rgb(38, 39, 48);
         }
+            
+        .e10tffaf0 {
+            background-color: black;
+        }
+            
+        .e1w6nwfl0 {
+        color: white;
+        }
+        
+            .e1obcldf2 {
+            background-color: #262325;
+            border-color: #4CAF50}
+            
+
     </style>
 """, unsafe_allow_html=True)
 
@@ -82,13 +97,14 @@ st.markdown("""
             display: flex;
             justify-content: center;
             align-items: center;
-        
+
         }
-            
+
         .stDownloadButton {
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #4CAF50 !important;
          }
         
         .e1obcldf2:hover  {
@@ -106,17 +122,19 @@ st.markdown("""
             border-color: #4CAF50;
             background-color: #4CAF59
         }
+            
+        
     </style>
 """, unsafe_allow_html=True)
 
 example_df=pd.read_csv(example_file)
 st.write(example_df)
 example_total_amount = example_df['Amount'].sum()
-st.markdown(f"<div>Total Amount Spent: ${example_total_amount:,.2f}</div>", unsafe_allow_html=True)
+st.markdown(f"<div style='color: white'>Total Amount Spent: ${example_total_amount:,.2f}</div>", unsafe_allow_html=True)
 
 
 
-st.markdown("<h5 style='text-align:center; padding-top: 50px;'>You can donwload this CSV file here to upload yourself!:</h5>", unsafe_allow_html=True)
+st.markdown("<h5 style='text-align:center; padding-top: 50px; color:white'>You can download this CSV file here to upload yourself!:</h5>", unsafe_allow_html=True)
 st.download_button(
     label="Download Example CSV File",
     data=example_file.getvalue(),
