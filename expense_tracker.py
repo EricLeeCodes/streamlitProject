@@ -77,7 +77,7 @@ if uploaded_file is not None:
     st.markdown("<h4 style='padding-block: 25px; color: #4CAF50;'>Your Uploaded CSV Content:</h4>", unsafe_allow_html=True)
     st.write(df) # Displays CSV file
     total_amount = df['Amount'].sum()
-    st.markdown(f"<div>Total Amount Spent: ${total_amount:,.2f}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='color: white;'>Total Amount Spent: ${total_amount:,.2f}</div>", unsafe_allow_html=True)
 
 
     # Fill in missing values with 0
@@ -122,7 +122,8 @@ st.markdown("""
             border-color: #4CAF50;
             background-color: #4CAF59
         }
-            
+        .es2srfl9 {
+            color: white;}   
         
     </style>
 """, unsafe_allow_html=True)
