@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 from io import StringIO
+
 
 # Example CSV Content
 csv_content = """Category,Amount,Date
@@ -79,6 +81,13 @@ if uploaded_file is not None:
     total_amount = df['Amount'].sum()
     st.markdown(f"<div style='color: white;'>Total Amount Spent: ${total_amount:,.2f}</div>", unsafe_allow_html=True)
 
+    # Bar graph
+    bar_fig = px.bar(df, x='Category', y='Amount', title='Total Spending By Category', color='Category')
+    st.plotly_chart(bar_fig, key="uploaded_bar_graph")
+
+    # Pie graph
+    pie_fig = px.pie(df, names='Category', values='Amount', title='Total Spending By Category', color='Category')
+    st.plotly_chart(pie_fig, key="uploaded_pie_chart")
 
     # Fill in missing values with 0
 
@@ -133,7 +142,13 @@ st.write(example_df)
 example_total_amount = example_df['Amount'].sum()
 st.markdown(f"<div style='color: white'>Total Amount Spent: ${example_total_amount:,.2f}</div>", unsafe_allow_html=True)
 
+# Bar graph
+example_bar_fig = px.bar(example_df, x='Category', y='Amount', title='Total Spending By Category', color='Category')
+st.plotly_chart(example_bar_fig, key="example_bar_graph")
 
+# Pie graph
+example_pie_fig = px.pie(example_df, names='Category', values='Amount', title='Total Spending By Category', color='Category')
+st.plotly_chart(example_pie_fig, key="example_pie_chart")
 
 st.markdown("<h5 style='text-align:center; padding-top: 50px; color:white'>You can download this CSV file here to upload yourself!:</h5>", unsafe_allow_html=True)
 st.download_button(
